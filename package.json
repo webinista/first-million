@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "test": "run test",
+    "build": "parcel build",
+    "start": "parcel",
+    "clean": "rm -rf ./dist && parcel"
+  },
   "devDependencies": {
     "parcel": "^2.12.0"
   },
