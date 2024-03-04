@@ -1,12 +1,18 @@
 const CheckBox = ({
   name,
   onChange = () => {},
-  labelText=""
+  labelText="",
+  checked=false
 }) => {
   return (
     <>
       <label htmlFor={name}>{labelText}</label>
-      <input type="checkbox" id={name} name={name} onChange={onChange} />
+      <input
+        type="checkbox"
+        id={name}
+        name={name}
+        onChange={onChange}
+        defaultChecked={checked} />
     </>
   )
 }
