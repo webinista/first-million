@@ -1,4 +1,5 @@
 {
+  "source": "index.html",
   "scripts": {
     "test": "run test",
     "build": "parcel build",
@@ -6,7 +7,8 @@
     "clean": "rm -rf ./dist && parcel"
   },
   "devDependencies": {
-    "parcel": "^2.12.0"
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
   },
   "dependencies": {
     "react": "^18.2.0",
