@@ -1,0 +1,21 @@
+:root {
+  box-sizing: border-box;
+  font: normal 10px / 1.5 sans-serif;
+}
+
+* {
+  box-sizing: inherit;
+  
+  &::after,
+  &::before {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+h1 {
+  font-size: 3.6rem;
+}
