@@ -3,7 +3,8 @@ const Input = ({
   name,
   onChange = () => {},
   onBlur = () => {},
-  defaultValue="",
+  defaultValue=null,
+  value=null,
   labelText="",
   step=null,
   size=25
@@ -19,6 +20,7 @@ const Input = ({
         onChange={onChange}
         onBlur={onBlur}
         size={size}
+        value={value}
         defaultValue={defaultValue} />
     </>
   )

@@ -31,6 +31,25 @@ export const first_million_years = (start_amount, rate = 0.05, monthly=true) => 
 export const first_million_rate = (start_amount, years, monthly=true) => {
   const million = BASE_NUM ** MILLION_EXPONENT;
   const periods = monthly ? 12 : 1;
-  
-  
+}
+
+export const prep_number = (number) => {
+  return number.toString().replace(/[,\$]/g, '');
+}
+
+export const formatted_number = (number) => {
+  const num = prep_number(number)
+  return new Intl.NumberFormat('en-US').format( parseFloat(num) );
+}
+
+export const numeric_to_number = (numeric_string) => {
+  return parseFloat(prep_number( numeric_string ));
+}
+
+export const to_float = (percent) => {
+  return percent / 100;
+}
+
+export const to_percentage = (percent) => {
+  return float * 100;
 }

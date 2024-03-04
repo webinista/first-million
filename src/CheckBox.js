@@ -6,13 +6,13 @@ const CheckBox = ({
 }) => {
   return (
     <>
-      <label htmlFor={name}>{labelText}</label>
       <input
         type="checkbox"
         id={name}
         name={name}
         onChange={onChange}
         defaultChecked={checked} />
+        <label htmlFor={name}><span>{labelText}</span></label>
     </>
   )
 }
