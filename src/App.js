@@ -24,8 +24,9 @@ const App = () => {
         principal: formatted_number(evt.target.value)
       };
     });
+    submitHandler();
   }
-  
+
   const changeHandler = (evt) => {
     if(Object.hasOwn(evt, 'target')) {
       setState((state) => {
@@ -35,8 +36,9 @@ const App = () => {
         };
       });
     }
+    submitHandler();
   }
-  
+
   const checkHandler = (evt) => {
     setState((state) => {
       return {
@@ -44,10 +46,13 @@ const App = () => {
         monthly: evt.target.checked
       }
     });
+    submitHandler();
   }
-  
-  const submitHandler = (evt) => {
-    evt.preventDefault();
+
+  const submitHandler = (evt=null) => {
+    if(evt){
+      evt.preventDefault();
+    }
 
     const years = first_million_years(
       numeric_to_number(state.principal),
@@ -77,7 +82,7 @@ const App = () => {
           defaultValue={state.principal}
         />
       </p>
-      
+
       <p>
         <Input
           type="number" 
@@ -89,7 +94,7 @@ const App = () => {
           onChange={changeHandler}
         />%
       </p>
-      
+
       <p>
         <Input
           type="number" 
@@ -101,7 +106,7 @@ const App = () => {
           value={state.years}
         /> years to have <strong>$1 million</strong>.
       </p>
-      
+
       <p>
         <CheckBox
           name="monthly"
