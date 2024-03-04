@@ -40,19 +40,19 @@ button {
   padding-inline: 1rem;
 }
 
-input[type=checkbox] {
+[type=checkbox] {
   position: absolute;
   inset-inline-start: -9999rem;
 }
 
-input[type=checkbox] + label {
+[type=checkbox] + label {
   display: inline-grid;
   grid-template-columns: auto auto;
   align-items: center;
   gap: 1rem;
 }
 
-input[type=checkbox] + label::before {
+[type=checkbox] + label::before {
   content: '\00a0';
   display: inline-flex;
   justify-content: center;
@@ -62,7 +62,11 @@ input[type=checkbox] + label::before {
   line-height: 1;
 }
 
-input[type=checkbox]:checked + label::before {
+[type=checkbox]:checked + label::before {
   content: '✔︎';
   border-radius: .5rem;
+}
+
+[type=text], [type=number] {
+  font-size: 3rem;
 }
