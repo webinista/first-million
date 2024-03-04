@@ -37,7 +37,8 @@ button {
   border: transparent;
   background: navy;
   color: white;
-  padding-inline: 1rem;
+  font-size: 2.4rem;
+  padding: 1rem 2rem;
 }
 
 [type=checkbox] {
