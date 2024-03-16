@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  useState,
   useReducer
 } from "react";
 
@@ -12,16 +11,10 @@ import {
   numeric_to_number,
   to_float,
   reducer,
-  submitted
+  initial_state as init
 } from './lib.js';
 
 const App = () => {
-  const init = {
-    principal: formatted_number(10000),
-    rate: 4,
-    years: 10,
-    monthly: true
-  };
 
   const [state, dispatch] = useReducer(reducer, init);
 
@@ -36,11 +29,12 @@ const App = () => {
   }
 
   const recalculate = (evt) => {
+    evt.preventDefault();
     dispatch({ type: 'recalculate' });
   }
 
   return (
-    <form onSubmit={submitted} onChange={recalculate}>
+    <form onSubmit={recalculate} onChange={recalculate}>
       <p>
         <Input
           type="text" 
@@ -69,7 +63,7 @@ const App = () => {
         <output
           htmlFor="principal rate"
           name="years"
-        >It will take you about <strong>{state.years}</strong> years to have <strong>$1 million</strong></output>.
+        >It will take you <strong>{state.years}</strong> years to have <strong>$1 million</strong></output>.
       </p>
 
       <p>

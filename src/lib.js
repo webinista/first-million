@@ -66,6 +66,7 @@ export const reducer = (state, action) => {
       break;
     case 'monthly':
       value = { [action.type]: !!action.value };
+      break;
     case 'recalculate':
       const yrs = first_million_years(
         numeric_to_number(state.principal),
@@ -85,6 +86,9 @@ export const reducer = (state, action) => {
   };
 }
 
-export const submitted = (evt) => {
-  evt.preventDefault();
-}
+export const initial_state = {
+  principal: formatted_number(1000000),
+  rate: 1,
+  years: 0,
+  monthly: true
+};
