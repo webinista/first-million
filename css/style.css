@@ -90,3 +90,13 @@ button {
 [type=text], [type=number] {
   font-size: 3rem;
 }
+
+output {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .5rem;
+
+  & strong {
+    font-size: 6rem;
+  }
+}
