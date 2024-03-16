@@ -49,10 +49,11 @@ const App = () => {
     <form onSubmit={recalculate} onChange={recalculate}>
       <p>
         <Input
-          type="text" 
+          type="text"
           name="principal"
           labelText="Starting principal $"
           onChange={onChange}
+          onBlur={onChange}
           size={10}
           value={state.principal}
         />
@@ -60,7 +61,7 @@ const App = () => {
 
       <p>
         <Input
-          type="number" 
+          type="number"
           name="rate"
           step={0.001}
           labelText="Interest rate "
@@ -68,14 +69,8 @@ const App = () => {
           min={0}
           value={state.rate}
           onChange={onChange}
+          onBlur={onChange}
         />%
-      </p>
-
-      <p>
-        <output
-          htmlFor="principal rate"
-          name="years"
-        >It will take you <strong>{state.years}</strong> years to have <strong>$1 million</strong></output>.
       </p>
 
       <p>
@@ -87,6 +82,14 @@ const App = () => {
         />
       </p>
       <button type="submit">Recalculate</button>
+
+       <p>
+        <output
+          htmlFor="principal rate"
+          name="years"
+        >It will take you <strong>{state.years}</strong> years to have <strong>$1 million.</strong></output>
+      </p>
+
     </form>
   )
 }
