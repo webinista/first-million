@@ -65,21 +65,15 @@ export const reducer = (state, action) => {
       value = { [action.type]: parseFloat(action.value) };
       break;
     case 'monthly':
-      value = { [action.type]: !!action.value };
+      value = { [action.type]: !state.monthly };
       break;
     case 'recalculate':
-      const yrs = first_million_years(
-        numeric_to_number(state.principal),
-        to_float(state.rate),
-        state.monthly
-      );
-        
-      value = { years: yrs };
+      value = { years: parseFloat(action.value) };
       break;
     default:
       value = action.value;
   }
-
+  
   return {
     ...state,
     ...value
