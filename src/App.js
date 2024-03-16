@@ -21,15 +21,12 @@ const App = () => {
     setState((state) => {
       return {
         ...state,
-        principal: formatted_number(+evt.target.value)
+        principal: formatted_number(evt.target.value)
       };
     });
-
-    submitHandler();
   }
 
   const changeHandler = (evt) => {
-
     if(Object.hasOwn(evt, 'target')) {
       setState((state) => {
         return {
@@ -38,9 +35,6 @@ const App = () => {
         };
       });
     }
-    submitHandler();
-
-    console.log(state)
   }
 
   const checkHandler = (evt) => {
@@ -50,7 +44,6 @@ const App = () => {
         monthly: evt.target.checked
       }
     });
-    submitHandler();
   }
 
   const submitHandler = (evt=null) => {
@@ -74,7 +67,7 @@ const App = () => {
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} onChange={submitHandler}>
       <p>
         <Input
           type="text" 
@@ -83,7 +76,7 @@ const App = () => {
           onChange={principalHandler}
           onBlur={principalHandler}
           size={10}
-          defaultValue={state.principal}
+          value={state.principal}
         />
       </p>
 
@@ -94,7 +87,8 @@ const App = () => {
           step={0.001}
           labelText="Interest rate "
           size={6}
-          defaultValue={state.rate}
+          value={state.rate}
+          onBlur={changeHandler}
           onChange={changeHandler}
         />%
       </p>

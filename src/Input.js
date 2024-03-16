@@ -20,8 +20,7 @@ const Input = ({
         onChange={onChange}
         onBlur={onBlur}
         size={size}
-        value={value}
-        defaultValue={defaultValue} />
+        value={value || ''} />
     </>
   )
 }
