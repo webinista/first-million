@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  useReducer
+  useReducer,
+  useState
 } from "react";
 
 import Input from "./Input";
@@ -18,19 +19,30 @@ const App = () => {
 
   const [state, dispatch] = useReducer(reducer, init);
 
+  const yrsState = useState(init.years);
+
   const onChange = (evt) => {
     let input = evt.target.value;
 
     if(evt.target.type == 'checkbox') {
-      input = evt.target.checked;
+      input = !evt.target.checked;
     }
 
     dispatch({ type: evt.target.name, value: input });
   }
 
   const recalculate = (evt) => {
-    evt.preventDefault();
-    dispatch({ type: 'recalculate' });
+    if(evt.type == 'submit') {
+      evt.preventDefault();
+    }
+
+    const input = first_million_years(
+      numeric_to_number(state.principal),
+      to_float(state.rate),
+      state.monthly
+    );
+
+    dispatch({ type: 'recalculate', value: input });
   }
 
   return (

@@ -11,7 +11,7 @@ const CheckBox = ({
         id={name}
         name={name}
         onChange={onChange}
-        defaultChecked={checked} />
+        checked={checked} />
         <label htmlFor={name}><span>{labelText}</span></label>
     </>
   )
