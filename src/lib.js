@@ -56,34 +56,35 @@ export const to_percentage = (percent) => {
 
 export const reducer = (state, action) => {
   let value;
-  
+
   switch(action.type) {
     case 'principal':
-      value = formatted_number(action.value);
+      value = { [action.type]: formatted_number(action.value) };
       break;
     case 'rate':
-      value = parseFloat(action.value);
+      value = { [action.type]: parseFloat(action.value) };
       break;
     case 'monthly':
-      value = !!action.value;
+      value = { [action.type]: !!action.value };
+    case 'recalculate':
+      const yrs = first_million_years(
+        numeric_to_number(state.principal),
+        to_float(state.rate),
+        state.monthly
+      );
+        
+      value = { years: yrs };
+      break;
     default:
-      value = +action.value;
+      value = action.value;
   }
-  
-  const num_years = first_million_years(
-    numeric_to_number(state.principal),
-    to_float(state.rate),
-    state.monthly
-  );
-  
+
   return {
     ...state,
-    [action.type]: value,
-    years: num_years
+    ...value
   };
 }
 
 export const submitted = (evt) => {
   evt.preventDefault();
-  console.log( 'submitted' )
 }

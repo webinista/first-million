@@ -25,7 +25,7 @@ const App = () => {
 
   const [state, dispatch] = useReducer(reducer, init);
 
-  const changeHandler = (evt) => {
+  const onChange = (evt) => {
     let input = evt.target.value;
 
     if(evt.target.type == 'checkbox') {
@@ -35,16 +35,18 @@ const App = () => {
     dispatch({ type: evt.target.name, value: input });
   }
 
-
+  const recalculate = (evt) => {
+    dispatch({ type: 'recalculate' });
+  }
 
   return (
-    <form onSubmit={submitted}>
+    <form onSubmit={submitted} onChange={recalculate}>
       <p>
         <Input
           type="text" 
           name="principal"
           labelText="Starting principal $"
-          onChange={changeHandler}
+          onChange={onChange}
           size={10}
           value={state.principal}
         />
@@ -59,7 +61,7 @@ const App = () => {
           size={6}
           min={0}
           value={state.rate}
-          onChange={changeHandler}
+          onChange={onChange}
         />%
       </p>
 
@@ -74,7 +76,7 @@ const App = () => {
         <CheckBox
           name="monthly"
           labelText="Compound monthly?"
-          onChange={changeHandler}
+          onChange={onChange}
           checked={ state.monthly }
         />
       </p>
