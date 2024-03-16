@@ -21,22 +21,26 @@ const App = () => {
     setState((state) => {
       return {
         ...state,
-        principal: formatted_number(evt.target.value)
+        principal: formatted_number(+evt.target.value)
       };
     });
+
     submitHandler();
   }
 
   const changeHandler = (evt) => {
+
     if(Object.hasOwn(evt, 'target')) {
       setState((state) => {
         return {
           ...state,
-          [evt.target.name]: parseFloat(evt.target.value)
+          [evt.target.name]: parseFloat(+evt.target.value)
         };
       });
     }
     submitHandler();
+
+    console.log(state)
   }
 
   const checkHandler = (evt) => {
@@ -96,15 +100,10 @@ const App = () => {
       </p>
 
       <p>
-        <Input
-          type="number" 
+        <output
+          htmlFor="principal rate"
           name="years"
-          labelText="It will take you about "
-          step="0.10"
-          onChange={changeHandler}
-          size={4}
-          value={state.years}
-        /> years to have <strong>$1 million</strong>.
+        >It will take you about <strong>{state.years}</strong> years to have <strong>$1 million</strong></output>.
       </p>
 
       <p>
