@@ -53,3 +53,37 @@ export const to_float = (percent) => {
 export const to_percentage = (percent) => {
   return float * 100;
 }
+
+export const reducer = (state, action) => {
+  let value;
+  
+  switch(action.type) {
+    case 'principal':
+      value = formatted_number(action.value);
+      break;
+    case 'rate':
+      value = parseFloat(action.value);
+      break;
+    case 'monthly':
+      value = !!action.value;
+    default:
+      value = +action.value;
+  }
+  
+  const num_years = first_million_years(
+    numeric_to_number(state.principal),
+    to_float(state.rate),
+    state.monthly
+  );
+  
+  return {
+    ...state,
+    [action.type]: value,
+    years: num_years
+  };
+}
+
+export const submitted = (evt) => {
+  evt.preventDefault();
+  console.log( 'submitted' )
+}

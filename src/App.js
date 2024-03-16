@@ -1,80 +1,50 @@
 import React from "react";
-import { useState } from "react";
+import {
+  useState,
+  useReducer
+} from "react";
+
 import Input from "./Input";
 import CheckBox from "./CheckBox";
 import {
   first_million_years,
   formatted_number,
   numeric_to_number,
-  to_float
+  to_float,
+  reducer,
+  submitted
 } from './lib.js';
 
 const App = () => {
-  const [state, setState] = useState({
+  const init = {
     principal: formatted_number(10000),
     rate: 4,
     years: 10,
     monthly: true
-  });
+  };
 
-  const principalHandler = (evt) => {
-    setState((state) => {
-      return {
-        ...state,
-        principal: formatted_number(evt.target.value)
-      };
-    });
-  }
+  const [state, dispatch] = useReducer(reducer, init);
 
   const changeHandler = (evt) => {
-    if(Object.hasOwn(evt, 'target')) {
-      setState((state) => {
-        return {
-          ...state,
-          [evt.target.name]: parseFloat(+evt.target.value)
-        };
-      });
-    }
-  }
+    let input = evt.target.value;
 
-  const checkHandler = (evt) => {
-    setState((state) => {
-      return {
-        ...state,
-        monthly: evt.target.checked
-      }
-    });
-  }
-
-  const submitHandler = (evt=null) => {
-    if(evt){
-      evt.preventDefault();
+    if(evt.target.type == 'checkbox') {
+      input = evt.target.checked;
     }
 
-    const years = first_million_years(
-      numeric_to_number(state.principal),
-      to_float(state.rate),
-      state.monthly
-    );
-
-    setState((state) => {
-      return {
-        ...state,
-        principal: formatted_number(state.principal),
-        years: parseFloat(years)
-      }
-    });
+    dispatch({ type: evt.target.name, value: input });
   }
+
+
 
   return (
-    <form onSubmit={submitHandler} onChange={submitHandler}>
+    <form onSubmit={submitted}>
       <p>
         <Input
           type="text" 
           name="principal"
           labelText="Starting principal $"
-          onChange={principalHandler}
-          onBlur={principalHandler}
+          onChange={changeHandler}
           size={10}
           value={state.principal}
         />
@@ -87,8 +57,8 @@ const App = () => {
           step={0.001}
           labelText="Interest rate "
           size={6}
+          min={0}
           value={state.rate}
-          onBlur={changeHandler}
           onChange={changeHandler}
         />%
       </p>
@@ -104,7 +74,7 @@ const App = () => {
         <CheckBox
           name="monthly"
           labelText="Compound monthly?"
-          onChange={checkHandler}
+          onChange={changeHandler}
           checked={ state.monthly }
         />
       </p>

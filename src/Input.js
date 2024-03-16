@@ -7,7 +7,8 @@ const Input = ({
   value=null,
   labelText="",
   step=null,
-  size=25
+  size=25,
+  min=null
 }) => {
   return (
     <>
@@ -15,6 +16,7 @@ const Input = ({
       <input
         step={step}
         type={type}
+        min={min}
         id={name}
         name={name}
         onChange={onChange}
