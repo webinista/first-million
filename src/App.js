@@ -87,7 +87,7 @@ const App = () => {
         <output
           htmlFor="principal rate"
           name="years"
-        >It will take you <strong>{state.years}</strong> years to have <strong>$1 million.</strong></output>
+        >It will take you <strong>{state.years} years</strong> to have <strong>$1 million.</strong></output>
       </p>
 
     </form>

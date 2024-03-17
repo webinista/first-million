@@ -1,6 +1,7 @@
 :root {
   box-sizing: border-box;
-  font: normal 10px / 1.5 sans-serif;
+  font: normal 10px / 1.5 "Golos Text",sans-serif;
+  font-optical-sizing: auto;
 
   --control-lightness: 25%;
   --control-lightness-focus: 40%;
@@ -32,6 +33,16 @@ p {
   border: .5rem solid var(--background);
   border-radius: .5rem;
   gap: .5rem;
+
+  &:focus-within {
+    outline: 2px dotted black;
+  }
+
+  &:has(output) {
+    line-height: .8;
+    padding: 0;
+    align-items: start;
+  }
 }
 
 input,
@@ -39,13 +50,10 @@ button,
 [type=checkbox] + label::before {
   border: 2px solid #888;
   border-radius: .5rem;
-  font-size: inherit;
+  font: inherit;
   padding: .5rem;
 }
 
-p:focus-within {
-  outline: 2px dotted black;
-}
 
 button {
   border: 0.3rem var(--background) solid;
@@ -93,10 +101,14 @@ button {
 
 output {
   display: inline-flex;
-  align-items: baseline;
+  align-items: last baseline;
   gap: .5rem;
 
-  & strong {
+  & strong:first-of-type {
     font-size: 6rem;
+  }
+  
+  & strong:last-of-type {
+    font-size: 3rem;
   }
 }
