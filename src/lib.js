@@ -51,7 +51,7 @@ export const to_float = (percent) => {
 }
 
 export const to_percentage = (percent) => {
-  return float * 100;
+  return percent * 100;
 }
 
 export const reducer = (state, action) => {
