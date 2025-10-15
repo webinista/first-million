@@ -7,11 +7,11 @@
     "clean": "rm -rf ./dist && parcel"
   },
   "devDependencies": {
-    "parcel": "^2.14.4",
+    "parcel": "^2.16.0",
     "process": "^0.11.10"
   },
   "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
