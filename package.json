@@ -7,7 +7,7 @@
     "clean": "rm -rf ./dist && parcel"
   },
   "devDependencies": {
-    "parcel": "^2.16.0",
+    "parcel": "^2.16.4",
     "process": "^0.11.10"
   },
   "dependencies": {
